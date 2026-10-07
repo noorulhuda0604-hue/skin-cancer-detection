@@ -1,0 +1,21 @@
+{
+ "base": 320,
+ "margin": 0.2,
+ "inputs": [
+  "full",
+  "crop"
+ ],
+ "class_names": [
+  "melanoma",
+  "non-melanoma"
+ ],
+ "members": [
+  "EfficientNetB3|full|LR",
+  "EfficientNetB3|full|LDA",
+  "DenseNet121|full|LR",
+  "EfficientNetB0|full|LR",
+  "EfficientNetB3|crop|LDA"
+ ],
+ "cv_accuracy": 0.8592,
+ "cv_accuracy_std": 0.0182
+}
