@@ -2,6 +2,8 @@ import json
 import numpy as np
 import streamlit as st
 import tensorflow as tf
+import os
+import gdown
 from PIL import Image
 
 
@@ -86,10 +88,20 @@ CFG = json.load(open("config.json"))
 BASE, MARGIN, INPUTS, CLASSES = CFG["base"], CFG["margin"], CFG["inputs"], CFG["class_names"]
 
 st.set_page_config(page_title="Skin Lesion Classifier", page_icon="🩺")
+MODEL_PATH = "best_model.keras"
+MODEL_ID = "1k7G0sRlEUzqzrmebq8l3cb1gULDJsmA2"
+
+if not os.path.exists(MODEL_PATH):
+    with st.spinner("Loading AI model..."):
+        gdown.download(
+            id=MODEL_ID,
+            output=MODEL_PATH,
+            quiet=False
+        )
 
 @st.cache_resource
 def load_model():
-    return tf.keras.models.load_model("best_model.keras", compile=False)
+    return tf.keras.models.load_model(MODEL_PATH, compile=False)
 
 def eight_views(a):
     out = []
